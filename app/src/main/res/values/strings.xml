@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">com.example.bullsandcows.BullsAndCows</string>
+    <integer name="len">4</integer>
+</resources>
