@@ -2,7 +2,7 @@ package com.example.bullsandcows
 
 class Logic {
     var message = ""
-    val times = R.integer.len
+    val times = 4
     fun genNumber(): List<Int> {
         val numbers = (0..9).toMutableList()
         val num = mutableListOf<Int>()
@@ -26,7 +26,7 @@ class Logic {
 
         str.forEach {
             if (it.toString().toIntOrNull() == null) {
-                message = "Введите последовательность из четырех уникальных цифр"
+                message = "Введите последовательность из $times уникальных цифр"
                 return null
             }
         }
@@ -36,7 +36,7 @@ class Logic {
                 checked += str[it].toString()
             }
             else {
-                message = "Введите последовательность из четырех уникальных цифр"
+                message = "Введите последовательность из $times уникальных цифр"
                 return null
             }
         }
@@ -44,21 +44,17 @@ class Logic {
         repeat(times) {
             res += str[it].toString().toInt()
         }
+        message = ""
         return res
     }
 
     fun check(gen: List<Int>, user: List<Int>): Pair<Int, Int> {
         var cows = 0
         var bulls = 0
-        val guessed = mutableSetOf<Int>()
         for (i in gen.indices) {
-            if (gen[i] == user[i]) bulls++
-            else guessed.add(gen[i])
-        }
-        for (i in guessed.indices) {
-            if (gen[i] != user[i] && user[i] in guessed) {
-                cows++
-                guessed.remove(gen[i])
+            if (user[i] in gen) {
+                if (gen[i] == user[i]) bulls++
+                else cows++
             }
         }
         return Pair(bulls, cows)
