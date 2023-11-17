@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             ).show()
             else if (!answerShown) {
                 dialogBuilder.setTitle("Супер!")
-                dialogBuilder.setMessage("Вы последовательность $gen за $attempts попыток")
+                dialogBuilder.setMessage("Вы угадали последовательность $gen за $attempts попыток")
                 dialogBuilder.show()
             }
             else {
