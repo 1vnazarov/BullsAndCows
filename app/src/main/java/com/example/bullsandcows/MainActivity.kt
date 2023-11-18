@@ -1,5 +1,6 @@
 package com.example.bullsandcows
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -65,8 +66,8 @@ class MainActivity : AppCompatActivity() {
             answerShown = true
             binding.root.removeView(binding.showAnswer)
             binding.showAnswerText.text = gen.toString()
-            binding.showAnswerText.x = -400F
-            binding.showAnswerText.y = 1500F
+            binding.showAnswerText.x = convertPixelsToDp(this, 0F)
+            binding.showAnswerText.y = convertPixelsToDp(this, 3200F)
         }
 
         binding.restartButton.setOnClickListener {
@@ -75,7 +76,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restart() {
+        finish()
         startActivity(Intent(applicationContext, this::class.java))
     }
 
+    private fun convertPixelsToDp(context: Context, pixels: Float): Float {
+        val screenPixelDensity = context.resources.displayMetrics.density
+        val dpValue = pixels / screenPixelDensity
+        return dpValue
+    }
 }
