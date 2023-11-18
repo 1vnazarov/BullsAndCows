@@ -66,8 +66,6 @@ class MainActivity : AppCompatActivity() {
             answerShown = true
             binding.root.removeView(binding.showAnswer)
             binding.showAnswerText.text = gen.toString()
-            binding.showAnswerText.x = convertPixelsToDp(this, 0F)
-            binding.showAnswerText.y = convertPixelsToDp(this, 3200F)
         }
 
         binding.restartButton.setOnClickListener {
