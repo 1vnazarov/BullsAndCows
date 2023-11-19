@@ -2,6 +2,8 @@ package com.example.bullsandcows
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.InputFilter.LengthFilter
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         val bac = Logic()
         var attempts = 0
         var answerShown = false
+        binding.enterNumber.filters = arrayOf<InputFilter>(LengthFilter(bac.times))
         binding.enterNumber.hint = "${bac.times} уникальных цифр"
         binding.tryGuess.alpha = 0.5F
         binding.showAnswer.alpha = 0F
