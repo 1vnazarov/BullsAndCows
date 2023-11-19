@@ -13,11 +13,9 @@
         android:theme="@style/Theme.com.example.bullsandcows.BullsAndCows"
         tools:targetApi="31">
         <activity
-            android:name=".GuessActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

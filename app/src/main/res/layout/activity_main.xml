@@ -33,26 +33,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/errorText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/design_default_color_error"
-        android:textSize="20sp"
-        android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/enterNumber"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="50dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="EMPTY"
@@ -64,22 +51,85 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_guess" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="20sp"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showAnswerText"
+        android:layout_width="409dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Нажмите на кнопку выше, если хотите посмотреть ответ"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showAnswer" />
+
+    <ImageButton
+        android:id="@+id/clear"
+        android:layout_width="39dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Clear"
+        android:foregroundTint="#FFFFFF"
+        android:scaleX="1.6"
+        android:scaleY="1.5"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_guess"
+        app:tint="@color/design_default_color_error" />
+
+    <ScrollView
+        android:id="@+id/history"
+        android:layout_width="245dp"
+        android:layout_height="313dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/material_dynamic_neutral70"
+        android:contentDescription="@string/app_name"
+        android:windowSoftInputMode="adjustNothing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tryGuess">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <Button
         android:id="@+id/tryGuess"
         style="@style/Widget.Material3.Button.IconButton.Filled"
         android:layout_width="234dp"
         android:layout_height="58dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#009688"
         android:text="Попробовать"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterNumber" />
 
@@ -95,59 +145,33 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tryGuess"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/showAnswerText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:text="Нажмите на кнопку выше, если хотите посмотреть ответ"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showAnswer" />
 
     <ImageView
         android:id="@+id/restartButton"
         android:layout_width="71dp"
         android:layout_height="78dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="68dp"
         android:background="@android:drawable/ic_popup_sync"
         android:contentDescription="Restart"
         app:layout_constraintBottom_toTopOf="@+id/enterNumber"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/bull_icon"
+        android:id="@+id/cow_icon"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="152dp"
-        android:src="@drawable/bull"
+        android:src="@drawable/cow"
         app:layout_constraintBottom_toTopOf="@+id/enterNumber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="@id/enterNumber"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_guess"
-        app:layout_constraintVertical_bias="0.22" />
-
-    <TextView
-        android:id="@+id/bulls_count"
-        android:layout_width="18dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="0"
-        android:textColor="@color/white"
-        android:textSize="32sp"
-        app:layout_constraintStart_toStartOf="@+id/bull_icon"
-        app:layout_constraintTop_toBottomOf="@+id/bull_icon" />
+        app:layout_constraintVertical_bias="0.098" />
 
     <TextView
         android:id="@+id/cows_count"
@@ -161,16 +185,27 @@
         app:layout_constraintTop_toBottomOf="@+id/cow_icon" />
 
     <ImageView
-        android:id="@+id/cow_icon"
+        android:id="@+id/bull_icon"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="90dp"
-        android:src="@drawable/cow"
+        android:src="@drawable/bull"
         app:layout_constraintBottom_toTopOf="@+id/enterNumber"
-        app:layout_constraintEnd_toStartOf="@+id/bull_icon"
+        app:layout_constraintEnd_toStartOf="@+id/cow_icon"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_guess"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.098" />
+
+    <TextView
+        android:id="@+id/bulls_count"
+        android:layout_width="18dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="@+id/bull_icon"
+        app:layout_constraintTop_toBottomOf="@+id/bull_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,15 @@
 package com.example.bullsandcows
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.bullsandcows.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,10 +25,11 @@ class MainActivity : AppCompatActivity() {
         val bac = Logic()
         var attempts = 0
         var answerShown = false
-        binding.enterNumber.hint = "Введите последовательность из ${bac.times} уникальных цифр"
+        binding.enterNumber.hint = "${bac.times} уникальных цифр"
         binding.tryGuess.alpha = 0.5F
         binding.showAnswer.alpha = 0F
         binding.showAnswerText.alpha = 0F
+
         var res: Pair<Int, Int>
         var user: List<Int>? = null
         val gen = bac.genNumber()
@@ -36,12 +39,25 @@ class MainActivity : AppCompatActivity() {
             binding.tryGuess.isEnabled = user != null
             binding.tryGuess.alpha = if (user != null) 1F else 0.5F
         }
+
+        binding.clear.setOnClickListener {
+            binding.enterNumber.setText("")
+        }
+
         binding.tryGuess.setOnClickListener {
             attempts++
             res = bac.check(gen, user!!)
+
+            val text = TextView(this)
+            binding.linearLayout.addView(text, 0)
+            text.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            text.textSize = 24F
+            text.text = "${user!!.joinToString("")} - ${res.first}Б ${res.second}К"
+            text.setTextColor(getColor(R.color.white))
+
             binding.bullsCount.text = res.first.toString()
             binding.cowsCount.text = res.second.toString()
-            if (res.first < 4) Toast.makeText(
+            if (res.first < bac.times) Toast.makeText(
                 applicationContext,
                 "Попробуйте еще раз",
                 Toast.LENGTH_SHORT
@@ -59,13 +75,16 @@ class MainActivity : AppCompatActivity() {
             if (attempts >= 5) {
                 binding.showAnswer.alpha = 1F
                 binding.showAnswerText.alpha = 1F
+                binding.history.y = binding.showAnswerText.y + binding.showAnswerText.height
             }
         }
 
         binding.showAnswer.setOnClickListener {
             answerShown = true
-            binding.root.removeView(binding.showAnswer)
+            binding.showAnswer.visibility = View.INVISIBLE
             binding.showAnswerText.text = gen.toString()
+            binding.showAnswerText.y = binding.showAnswer.y
+            binding.history.y = binding.showAnswerText.y + binding.showAnswerText.height
         }
 
         binding.restartButton.setOnClickListener {
@@ -76,11 +95,5 @@ class MainActivity : AppCompatActivity() {
     private fun restart() {
         finish()
         startActivity(Intent(applicationContext, this::class.java))
-    }
-
-    private fun convertPixelsToDp(context: Context, pixels: Float): Float {
-        val screenPixelDensity = context.resources.displayMetrics.density
-        val dpValue = pixels / screenPixelDensity
-        return dpValue
     }
 }
